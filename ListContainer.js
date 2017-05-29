@@ -13,10 +13,22 @@ class ListContainer {
         this.whiteDiv = document.createElement('div')
         this.whiteDiv.style.background = '#EEEEEE'
         this.whiteDiv.style.width = w
+        this.ul.style.overflow = 'scroll'
         this.whiteDiv.style.left = this.div.style.left = window.innerWidth-w-w/20
+        const anotherDiv = document.createElement('div')
+        anotherDiv.appendChild(this.ul)
+        anotherDiv.overflow = 'scroll'
+        this.whiteDiv.appendChild(anotherDiv)
     }
     add(text) {
-
+        const li = document.createElement('li')
+        li.style.listStyle = 'none'
+        li.style.border = 'white 0px solid'
+        li.style.fontSize = 20
+        li.style.padding = 20
+        li.style.borderBottomWidth = 2
+        li.innerHTML = text
+        this.ul.appendChild(li)
     }
     show() {
       this.div.style.position = 'absolute'
@@ -26,7 +38,7 @@ class ListContainer {
       this.whiteDiv.style.height = 0
       document.body.appendChild(this.div)
       document.body.appendChild(this.whiteDiv)
-      //this.div.appendChild('ul')
+
       setInterval(()=>{
           this.update()
       },75)
